@@ -62,7 +62,9 @@ class SplashPotion extends Throwable{
 		parent::__construct($location, $shootingEntity, $nbt);
 	}
 
-	protected function getInitialGravity() : float{ return 0.05; }
+	protected function getInitialDragMultiplier() : float{ return 0.01; }
+
+	protected function getInitialGravity() : float{ return 0.06; }
 
 	public function saveNBT() : CompoundTag{
 		$nbt = parent::saveNBT();
