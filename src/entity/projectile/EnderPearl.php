@@ -32,6 +32,10 @@ use pocketmine\world\sound\EndermanTeleportSound;
 class EnderPearl extends Throwable{
 	public static function getNetworkTypeId() : string{ return EntityIds::ENDER_PEARL; }
 
+	protected function getInitialDragMultiplier() : float{ return 0.0085; }
+
+	protected function getInitialGravity() : float{ return 0.065; }
+
 	protected function onHit(ProjectileHitEvent $event) : void{
 		$owner = $this->getOwningEntity();
 		if($owner !== null){
