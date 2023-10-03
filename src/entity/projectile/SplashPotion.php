@@ -54,6 +54,7 @@ class SplashPotion extends Throwable{
 
 	public static function getNetworkTypeId() : string{ return EntityIds::SPLASH_POTION; }
 
+	protected bool $splash = true;
 	protected bool $linger = false;
 	protected PotionType $potionType;
 
@@ -95,8 +96,12 @@ class SplashPotion extends Throwable{
 			$particle = new PotionSplashParticle(Color::mix(...$colors));
 		}
 
-		$this->getWorld()->addParticle($this->location, $particle);
-		$this->broadcastSound(new PotionSplashSound());
+		if ($this->splash) {
+			
+			$this->getWorld()->addParticle($this->location, $particle);
+			$this->broadcastSound(new PotionSplashSound());
+			
+		}
 
 		if($hasEffects){
 			if(!$this->willLinger()){
@@ -143,6 +148,12 @@ class SplashPotion extends Throwable{
 				}
 			}
 		}
+	}
+
+	public function setSplash(bool $splash) : void {
+
+		$this->splash = $splash;
+		
 	}
 
 	/**
